@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Student;
+use Illuminate\Support\Facades\Validator; 
+
 
 class StudentController extends Controller
 {
@@ -38,7 +40,7 @@ class StudentController extends Controller
         if ($validator ->fails()){
             return response()->json([
                 'status'=>422,
-                'errors'=>$validator->message()
+                'errors'=>$validator->messages()
             ],422);
         }else{
             $student = Student::create([
